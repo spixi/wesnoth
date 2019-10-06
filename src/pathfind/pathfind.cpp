@@ -681,14 +681,21 @@ marked_route mark_route(const plain_route &rt, bool update_move_cost)
 			// if it's an enemy unit and a fogged village, we assume a capture
 			// (if he already owns it, we can't know that)
 			// if it's not an enemy, we can always know if he owns the village
-			bool capture = resources::gameboard->map().is_village(*i) && ( !unit_team.owns_village(*i)
+			bool village = resources::gameboard->map().is_village(*i);
+			bool capture = village && ( !unit_team.owns_village(*i)
 				 || (viewing_team.is_enemy(u.side()) && viewing_team.fogged(*i)) );
+
+			// maybe also return the amount of healing here?
+			bool heals = resources::gameboard->map().gives_healing(*i) > 0;
+			
+			//TODO: max_light can be smaller than the light of ToD, but in a cave this would be ok?
+			bool illuminates = resources::gameboard->map().light(*i) > 0;
 
 			++turns;
 
 			bool invisible = u.invisible(*i, false);
 
-			res.marks[*i] = marked_route::mark(turns, zoc, capture, invisible);
+			res.marks[*i] = marked_route::mark(turns, zoc, capture, invisible, village, heals, illuminates);
 
 			if(last_step) {
 				if(capture) {

@@ -46,6 +46,7 @@ public:
 
 	bool is_village(const map_location& loc) const;
 	int gives_healing(const map_location& loc) const;
+	int light(const map_location& loc) const;
 	bool is_castle(const map_location& loc) const;
 	bool is_keep(const map_location& loc) const;
 
@@ -59,6 +60,7 @@ public:
 
 	bool is_village(const t_translation::terrain_code & terrain) const;
 	int gives_healing(const t_translation::terrain_code & terrain) const;
+	int light(const t_translation::terrain_code & terrain) const;
 	bool is_castle(const t_translation::terrain_code & terrain) const;
 	bool is_keep(const t_translation::terrain_code & terrain) const;
 

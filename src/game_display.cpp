@@ -434,9 +434,19 @@ void game_display::draw_movement_info(const map_location& loc)
 					image::get_image("misc/zoc.png", image::SCALED_TO_HEX));
 			}
 
-			if (w->second.capture) {
+			if (w->second.village) {
 				drawing_buffer_add(LAYER_MOVE_INFO, loc, xpos, ypos,
-					image::get_image("misc/capture.png", image::SCALED_TO_HEX));
+					image::get_image(w->second.capture ? "misc/capture.png" : "misc/village.png", image::SCALED_TO_HEX));
+			}
+
+			if (w->second.heals) {
+				drawing_buffer_add(LAYER_MOVE_INFO, loc, xpos, ypos,
+					image::get_image("misc/heals.png", image::SCALED_TO_HEX));
+			}
+
+			if (w->second.illuminates) {
+				drawing_buffer_add(LAYER_MOVE_INFO, loc, xpos, ypos,
+					image::get_image("misc/illuminates.png", image::SCALED_TO_HEX));
 			}
 
 			//we display turn info only if different from a simple last "1"

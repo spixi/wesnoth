@@ -66,6 +66,8 @@ bool gamemap::is_village(const map_location& loc) const
 	{ return on_board(loc) && is_village(get_terrain(loc)); }
 int gamemap::gives_healing(const map_location& loc) const
 	{ return on_board(loc) ?  gives_healing(get_terrain(loc)) : 0; }
+int gamemap::light(const map_location& loc) const
+	{ return on_board(loc) ?  light(get_terrain(loc)) : 0; }
 bool gamemap::is_castle(const map_location& loc) const
 	{ return on_board(loc) && is_castle(get_terrain(loc)); }
 bool gamemap::is_keep(const map_location& loc) const
@@ -89,6 +91,8 @@ bool gamemap::is_village(const t_translation::terrain_code & terrain) const
 	{ return tdata_->get_terrain_info(terrain).is_village(); }
 int gamemap::gives_healing(const t_translation::terrain_code & terrain) const
 	{ return tdata_->get_terrain_info(terrain).gives_healing(); }
+int gamemap::light(const t_translation::terrain_code & terrain) const
+	{ return tdata_->get_terrain_info(terrain).light_bonus(0); }
 bool gamemap::is_castle(const t_translation::terrain_code & terrain) const
 	{ return tdata_->get_terrain_info(terrain).is_castle(); }
 bool gamemap::is_keep(const t_translation::terrain_code & terrain) const

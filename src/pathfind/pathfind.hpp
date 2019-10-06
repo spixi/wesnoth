@@ -167,16 +167,19 @@ struct marked_route
 	struct mark
 	{
 		mark(int turns_number = 0, bool in_zoc = false,
-				bool do_capture = false, bool is_invisible = false)
+				bool do_capture = false, bool is_invisible = false, bool is_village = false, bool does_heal = false, bool does_illuminate = false)
 			: turns(turns_number), zoc(in_zoc),
-			  capture(do_capture), invisible(is_invisible) {}
+			  capture(do_capture), invisible(is_invisible), village(is_village), heals(does_heal), illuminates(does_illuminate) {}
 		int turns;
 		bool zoc;
 		bool capture;
 		bool invisible;
+		bool village;
+		bool heals;
+		bool illuminates;
 
 		bool operator==(const mark& m) const {
-			return turns == m.turns && zoc == m.zoc && capture == m.capture && invisible == m.invisible;
+			return turns == m.turns && zoc == m.zoc && capture == m.capture && invisible == m.invisible && village == m.village && heals == m.heals && illuminates == m.illuminates;
 		}
 	};
 	typedef std::map<map_location, mark> mark_map;
